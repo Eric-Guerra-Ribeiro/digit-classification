@@ -44,11 +44,3 @@ def get_classes():
     """
     """
     return np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-
-
-if __name__ == "__main__":
-    np.savetxt("MNIST\\train_input.gz", get_input(TRAIN_PATH))
-    np.savetxt("MNIST\\train_label.gz", get_label(TRAIN_PATH), fmt="%d")
-    np.savetxt("MNIST\\test_input.gz", get_input(TEST_PATH))
-    np.savetxt("MNIST\\test_label.gz", get_label(TEST_PATH), fmt="%d")
-    np.savetxt("MNIST\\class_list.gz", get_classes(), fmt="%d")
