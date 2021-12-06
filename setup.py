@@ -1,6 +1,6 @@
 import numpy as np
 import dataset
-import least_squares
+from least_squares import LeastSquaresMultiClassClassifier
 
 if __name__ == "__main__":
     train_input = dataset.get_input(dataset.TRAIN_PATH, bias=False)
@@ -14,7 +14,7 @@ if __name__ == "__main__":
     np.savetxt("MNIST\\test_input_bias.gz", dataset.get_input(dataset.TEST_PATH, bias=True))
     np.savetxt("MNIST\\test_label.gz", dataset.get_label(dataset.TEST_PATH), fmt="%d")
     np.savetxt("MNIST\\class_list.gz", class_list, fmt="%d")
-    least_squares_classifier = least_squares.LeastSquaresMultiClassClassifier(train_input, train_label, class_list)
+    least_squares_classifier = LeastSquaresMultiClassClassifier(train_input, train_label, class_list)
     least_squares_classifier.export_weights("MNIST\\weights.gz")
-    least_squares_classifier_bias = least_squares.LeastSquaresMultiClassClassifier(train_input_bias, train_label, class_list)
+    least_squares_classifier_bias = LeastSquaresMultiClassClassifier(train_input_bias, train_label, class_list)
     least_squares_classifier_bias.export_weights("MNIST\\weights_bias.gz")
