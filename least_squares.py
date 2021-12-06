@@ -61,3 +61,9 @@ class LeastSquaresMultiClassClassifier:
             if self.confusion_matrix is None:
                 return
         self.confusion_matrix.plot_confusion_matrix(self.class_list, tag=tag, title=title)
+
+
+    def export_weights(self):
+        """
+        """
+        np.savetxt("MNIST\\weights.gz", self.weights)
