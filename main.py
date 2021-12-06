@@ -14,12 +14,12 @@ if __name__ == "__main__":
 
     least_squares_classifier = least_squares.LeastSquaresMultiClassClassifier(train_input, train_label, class_list, weights)
     least_squares_classifier.test(test_input, test_label)
-    least_squares_classifier.show_confusion_matrix(tag="teste")
+    least_squares_classifier.show_confusion_matrix(tag="teste", title="Least Squares Confusion Matrix Test Set without Bias")
     least_squares_classifier.test(train_input, train_label)
-    least_squares_classifier.show_confusion_matrix(tag="train")
+    least_squares_classifier.show_confusion_matrix(tag="train", title="Least Squares Confusion Matrix Train Set without Bias")
 
     least_squares_classifier_bias = least_squares.LeastSquaresMultiClassClassifier(train_input_bias, train_label, class_list, weights_bias)
     least_squares_classifier_bias.test(test_input_bias, test_label)
-    least_squares_classifier_bias.show_confusion_matrix(tag="teste_bias")
+    least_squares_classifier_bias.show_confusion_matrix(tag="teste_bias", title="Least Squares Confusion Matrix Test Set with Bias")
     least_squares_classifier_bias.test(train_input_bias, train_label)
-    least_squares_classifier_bias.show_confusion_matrix(tag="train_bias")
+    least_squares_classifier_bias.show_confusion_matrix(tag="train_bias", title="Least Squares Confusion Matrix Train Set with Bias")
