@@ -63,7 +63,7 @@ class LeastSquaresMultiClassClassifier:
         self.confusion_matrix.plot_confusion_matrix(self.class_list, tag=tag, title=title)
 
 
-    def export_weights(self):
+    def export_weights(self, path):
         """
         """
-        np.savetxt("MNIST\\weights.gz", self.weights)
+        np.savetxt(path, self.weights)

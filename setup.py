@@ -12,4 +12,4 @@ if __name__ == "__main__":
     np.savetxt("MNIST\\test_label.gz", dataset.get_label(dataset.TEST_PATH), fmt="%d")
     np.savetxt("MNIST\\class_list.gz", class_list, fmt="%d")
     least_squares_classifier = least_squares.LeastSquaresMultiClassClassifier(train_input, train_label, class_list)
-    least_squares_classifier.export_weights()
+    least_squares_classifier.export_weights("MNIST\\weights.gz")
