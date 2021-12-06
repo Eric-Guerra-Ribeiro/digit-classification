@@ -13,14 +13,14 @@ class LeastSquaresMultiClassClassifier:
         self.k_classes = len(class_list)
         for i in range(self.k_classes):
             self.class_key[class_list[i]] = i
-        self.trains_labels = np.zeros(len(train_label))
+        self.train_labels = np.zeros(len(train_label))
         for i in range(len(train_label)):
-            self.trains_labels[i] = self.class_key[train_label[i]]
-        self.trains_labels = self.trains_labels.astype(int)
+            self.train_labels[i] = self.class_key[train_label[i]]
+        self.train_labels = self.train_labels.astype(int)
         self.train_right_output = np.ones((len(train_label), self.k_classes))
         for i in range(len(train_label)):
             for j in range(self.k_classes):
-                if j != self.trains_labels[i]:
+                if j != self.train_labels[i]:
                     self.train_right_output[i][j] = -1.
         if weights is None:
             self.weights = np.linalg.pinv(self.train_input)@self.train_right_output
