@@ -36,3 +36,19 @@ class ConfusionMatrix:
         plt.savefig("Confusion Matrixes\\confusionmatrix{}.png".format(tag), facecolor='w', edgecolor='w',
                     orientation='portrait', transparent=True, pad_inches=0.1)
         plt.show()
+
+
+    def print_error_rate(self):
+        cases_by_class = np.sum(self.confusion_matrix, axis=1)
+        errors_by_class = np.sum(self.confusion_matrix - np.diag(np.diag(self.confusion_matrix)), axis=1)
+        total_errors = np.sum(errors_by_class)
+        total_cases = np.sum(cases_by_class)
+        print("Error Rate: {:.2f}%".format(100*total_errors/total_cases))
+        for i in range(len(self.class_list)):
+            print("Error Rate for {}: {:.2f}%".format(self.class_list[i], 100*errors_by_class[i]/cases_by_class[i]))
+            print("Misidentified as:", end=" ")
+            for j in range(len(self.class_list)):
+                if i != j and self.confusion_matrix[i][j] != 0:
+                    print("{} {:.2f}%,".format(self.class_list[j], 100*self.confusion_matrix[i][j]/cases_by_class[i]), end=" ")
+            print()
+        print()

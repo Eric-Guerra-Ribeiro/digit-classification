@@ -71,3 +71,7 @@ class LeastSquaresMultiClassClassifier:
         """
         """
         np.savetxt(path, self.weights)
+
+    
+    def print_error_rate(self):
+        self.confusion_matrix.print_error_rate()
