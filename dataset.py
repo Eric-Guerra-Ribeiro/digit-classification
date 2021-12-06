@@ -8,20 +8,24 @@ TRAIN_PATH = "MNIST\Train"
 N_TEST_IMAGES = 200
 N_TRAIN_IMAGES = 2400
 
-def get_input(path):
+def get_input(path, bias=False):
     """
     """
     if path == TRAIN_PATH:
         number_images = N_TRAIN_IMAGES
     elif path == TEST_PATH:
         number_images = N_TEST_IMAGES
-    input = np.ones([number_images, IMAGE_HEIGHT*IMAGE_WIDTH + 1 ])
+    if bias:
+        input = np.ones([number_images, IMAGE_HEIGHT*IMAGE_WIDTH + 1 ])
+    else:
+        input = np.ones([number_images, IMAGE_HEIGHT*IMAGE_WIDTH])
     for i in range(number_images):
         newpath = path + "\{}.jpg".format(i+1)
         img = Image.open(newpath)
         image = np.asarray(img).flatten()
         image = image/255
-        image = np.append(image, [1])
+        if bias:
+            image = np.append(image, [1])
         input[i] =  image
     return input
 
