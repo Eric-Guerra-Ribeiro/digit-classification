@@ -79,7 +79,7 @@ class LeastSquaresMultiClassClassifier:
     
     def print_wrong_predictions(self):
         print("Wrong predictions:", end=" ")
-        for i in range(self.test_labels):
+        for i in range(len(self.test_labels)):
             if self.test_labels[i] != self.test_prediction[i]:
                 print("{}º image ({}) for a {},".format(i+1, self.train_labels[i], self.test_prediction[i]), end=" ")
         print()
