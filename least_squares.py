@@ -1,10 +1,11 @@
 import numpy as np
 import confusion_matrix
+import pseudo_inverse
 
 class LeastSquaresMultiClassClassifier:
     """
     """
-    def __init__(self, train_input, train_label, class_list, weights = None):
+    def __init__(self, train_input, train_label, class_list, lib_pinv = True, weights = None):
         """
         """
         self.train_input = train_input
@@ -23,7 +24,10 @@ class LeastSquaresMultiClassClassifier:
                 if j != self.train_labels[i]:
                     self.expected_outputs[i][j] = -1.
         if weights is None:
-            self.weights = np.linalg.pinv(self.train_input)@self.expected_outputs
+            if lib_pinv:
+                self.weights = np.linalg.pinv(self.train_input)@self.expected_outputs
+            else:
+                self.weights = pseudo_inverse.pseudo_inverse(self.train_input)@self.expected_outputs
         else:
             self.weights = weights
         self.test_labels = None
