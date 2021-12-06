@@ -17,13 +17,13 @@ class LeastSquaresMultiClassClassifier:
         for i in range(len(train_label)):
             self.train_labels[i] = self.class_key[train_label[i]]
         self.train_labels = self.train_labels.astype(int)
-        self.train_right_output = np.ones((len(train_label), self.k_classes))
+        self.expected_outputs = np.ones((len(train_label), self.k_classes))
         for i in range(len(train_label)):
             for j in range(self.k_classes):
                 if j != self.train_labels[i]:
-                    self.train_right_output[i][j] = -1.
+                    self.expected_outputs[i][j] = -1.
         if weights is None:
-            self.weights = np.linalg.pinv(self.train_input)@self.train_right_output
+            self.weights = np.linalg.pinv(self.train_input)@self.expected_outputs
         else:
             self.weights = weights
         self.test_labels = None
