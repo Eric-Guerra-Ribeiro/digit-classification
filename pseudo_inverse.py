@@ -1,8 +1,6 @@
 import numpy as np
 import math
 
-from numpy.matrixlib import matrix
-
 def modified_gram_schmidt(matrix, epsilon=1e-12):
     """
     """
