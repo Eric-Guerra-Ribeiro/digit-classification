@@ -54,7 +54,7 @@ class LeastSquaresMultiClassClassifier:
         if self.test_labels is None:
             print("No test data found.")
             return
-        self.confusion_matrix = confusion_matrix.ConfusionMatrix(self.test_labels, self.test_prediction, self.k_classes)
+        self.confusion_matrix = confusion_matrix.ConfusionMatrix(self.test_labels, self.test_prediction, self.k_classes, self.class_list)
 
 
     def show_confusion_matrix(self, tag="", title="Confusion Matrix"):
@@ -64,7 +64,7 @@ class LeastSquaresMultiClassClassifier:
             self.construct_confusion_matrix()
             if self.confusion_matrix is None:
                 return
-        self.confusion_matrix.plot_confusion_matrix(self.class_list, tag=tag, title=title)
+        self.confusion_matrix.plot_confusion_matrix(tag=tag, title=title)
 
 
     def export_weights(self, path):

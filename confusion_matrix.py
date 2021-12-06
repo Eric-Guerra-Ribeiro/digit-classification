@@ -4,16 +4,17 @@ import matplotlib.pyplot as plt
 class ConfusionMatrix:
     """
     """
-    def __init__(self, labels, predictions, k_classes):
+    def __init__(self, labels, predictions, k_classes, class_list):
         """
         """
         self.confusion_matrix = np.zeros((k_classes, k_classes))
         for i in range(len(labels)):
             self.confusion_matrix[labels[i]][predictions[i]] += 1
         self.confusion_matrix = self.confusion_matrix.astype(int)
+        self.class_list = class_list
 
 
-    def plot_confusion_matrix(self, class_list, tag="", title="Confusion Matrix"):
+    def plot_confusion_matrix(self, tag="", title="Confusion Matrix"):
         """
         """
         fig, ax = plt.subplots()
@@ -21,7 +22,7 @@ class ConfusionMatrix:
         ax.figure.colorbar(im, ax=ax)
         ax.set(xticks=np.arange(self.confusion_matrix.shape[1]),
                yticks=np.arange(self.confusion_matrix.shape[0]),
-               xticklabels=class_list, yticklabels=class_list,
+               xticklabels=self.class_list, yticklabels=self.class_list,
                title=title,
                ylabel='True label',
                xlabel='Predicted label')
